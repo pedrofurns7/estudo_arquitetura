@@ -7,3 +7,9 @@ create table usuarios (
     senha varchar (255) not null
 );
 
+
+create table produtos (
+    id uuid PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL
+)
