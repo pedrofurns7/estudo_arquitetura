@@ -6,8 +6,8 @@ import SenhaCripto from './external/auth/SenhaCripto'
 import RepositorioUsuarioPg from './external/database/RepositorioUsuarioPg'
 import RegistrarUsuarioController from './external/api/RegistrarUsuarioController'
 import RegistrarUsuario from './core/usuario/service/RegistrarUsuario'
-import ObterProdutoPorIdController from './external/api/ObterProdutoPorIdController'
-import ObterProdutoPorId from './core/produto/service/ObterProdutoPorId'
+import ObterProdutoPorNomeController from './external/api/ObterProdutoPorNomeController'
+import ObterProdutoPorNome from './core/produto/service/ObterProdutoPorNome'
 import LoginUsuarioController from './external/api/LoginUsuarioController'
 import LoginUsuario from './core/usuario/service/LoginUsuario'
 import express from 'express'
@@ -55,3 +55,8 @@ const registrarProduto = new RegistrarProduto(
 new RegistrarProdutoController(app, registrarProduto)
 
 
+const obterProdutoPorNome = new ObterProdutoPorNome(
+    repositorioProduto
+)
+
+new ObterProdutoPorNomeController(app, obterProdutoPorNome, usuarioMid)

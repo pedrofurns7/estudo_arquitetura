@@ -17,4 +17,13 @@ export default class RepositorioProdutoPg{
             ]
         )
     }
+
+    async buscarPorNome(nome: string): Promise<Produto | null>{
+        const produto = await db.oneOrNone(
+            'select * from produtos where nome = $1',
+            [nome]
+        )
+        if(!produto ) return null
+        return produto 
+    }
 }
