@@ -14,6 +14,7 @@ import express from 'express'
 import RegistrarProduto from './core/produto/service/RegistrarProduto'
 import RepositorioProdutoPg from './external/database/RepositorioProdutoPg'
 import RegistrarProdutoController from './external/api/RegistrarProdutoController'
+import { authorize } from './external/api/AuthorizeMiddleware'
 
 const app = express()
 const porta = process.env.API_PORT ?? 4000
@@ -45,6 +46,8 @@ new LoginUsuarioController(app, loginUsuario)
 
 const usuarioMid = UsuarioMiddleware(repositorioUsuario)
 
+const authorizeMid = authorize
+
 // const obterProdutoPorId = new ObterProdutoPorId()
 // new ObterProdutoPorIdController(app, obterProdutoPorId, usuarioMid)
 
@@ -52,11 +55,11 @@ const repositorioProduto = new RepositorioProdutoPg()
 const registrarProduto = new RegistrarProduto(
     repositorioProduto
 )
-new RegistrarProdutoController(app, registrarProduto)
+new RegistrarProdutoController(app, registrarProduto, usuarioMid, authorizeMid)
 
 
 const obterProdutoPorNome = new ObterProdutoPorNome(
     repositorioProduto
-)
+)   
 
 new ObterProdutoPorNomeController(app, obterProdutoPorNome, usuarioMid)

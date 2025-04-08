@@ -8,13 +8,14 @@ export default class RepositorioUsuarioPg{
     async inserir(usuario: Usuario){
        await db.query(`
         insert into usuarios
-        (id, nome, email, senha)
-        values ($1, $2, $3, $4)`,
+        (id, nome, email, senha, role)
+        values ($1, $2, $3, $4, $5)`,
         [
             usuario.id,
             usuario.nome,
             usuario.email,
             usuario.senha,
+            usuario.role
         ]
     )
     }

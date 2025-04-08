@@ -8,6 +8,7 @@ export default class RegistrarUsuarioController {
           nome: req.body.nome,
           email: req.body.email,
           senha: req.body.senha,
+          role: req.body.role
         })
 
         res.status(201).send()

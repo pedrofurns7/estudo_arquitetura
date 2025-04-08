@@ -25,7 +25,8 @@ export default class RegistrarUsuario implements CasoDeUso<Usuario, void>{
             id: Id.gerarHash(),
             nome: usuario.nome,
             email: usuario.email,
-            senha: senhaCripto
+            senha: senhaCripto,
+            role: usuario.role
         }
 
         this.repositorio.inserir(novoUsuario)
